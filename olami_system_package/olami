@@ -1,0 +1,29 @@
+#!/bin/bash
+
+PATH="/sbin:/bin"
+
+. /lib/lsb/init-functions
+
+
+
+do_start() {
+      /sbin/run_olami
+}
+
+
+case "$1" in
+  start|"")
+	do_start
+	;;
+  restart|reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+  stop|status)
+	# No-op
+	;;
+  *)
+	echo "Usage: sudo service olami [retart]" >&2
+	exit 3
+	;;
+esac
