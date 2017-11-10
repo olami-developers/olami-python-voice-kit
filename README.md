@@ -9,5 +9,5 @@ OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 - [简体中文在线教程 - 2](https://cn.olami.ai/wiki/)
 -->
 * * *
-- [繁體中文線上說明 - 安装指南【Raspberry Pi + Raspbain】](https://tw.olami.ai/school/article/62)
+- [繁體中文線上說明 - 安装指南 (Raspberry Pi + Raspbian)](https://tw.olami.ai/school/article/62)
 - [繁體中文線上說明 - 程式碼解說](https://tw.olami.ai/school/article/64)
