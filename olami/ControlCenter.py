@@ -21,6 +21,7 @@ from TtsPlayer import TtsPlayer
 from SpeechProcess import SpeechProcess
 from NliObject import NliObject
 from LedControl import LedControl
+from DialogueObject import DialogueObject
 
 class ControlCenter(Thread):
     '''
@@ -69,12 +70,19 @@ class ControlCenter(Thread):
         #obj = SemanticObject(msg.obj)
         obj = NliObject(msg.obj)
         obj = obj.parse()
-        obj.process(self.handler)
-        if len(obj.getTts()) > 0:
+	
+        if type(obj) != DialogueObject:
+            print("No Answer!")
             msg = self.handler.obtainMessage1(MsgConst.MSG_SERVER_TTS_PLAY)
-            msg.obj = obj.getTts()
-            msg.arg1 = obj.needAnswer()
-            self.handler.sendMessage(msg)             
+            msg.obj = "沒有結果"
+            self.handler.sendMessage(msg)
+        else:
+            obj.process(self.handler)
+            if len(obj.getTts()) > 0:
+                msg = self.handler.obtainMessage1(MsgConst.MSG_SERVER_TTS_PLAY)
+                msg.obj = obj.getTts()
+                msg.arg1 = obj.needAnswer()
+                self.handler.sendMessage(msg)             
     
     def onUserDataRefresh(self, msg):
         pass
