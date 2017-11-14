@@ -226,7 +226,7 @@ class OlamiNlp(object):
         postData +='&timestamp='+str(timestamp)
         postData +='&sign='+str(sign)
         postData +='&seq=' +seqValue
-	portData +='&_from=python'
+        postData +='&_from=python'
         
         return str(postData)
 
