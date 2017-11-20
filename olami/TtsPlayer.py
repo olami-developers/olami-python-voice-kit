@@ -15,7 +15,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 '''
-from ctypes import CDLL,c_char_p
+from ctypes import CDLL,c_char_p,c_float
 from threading import Thread
 import os
 from LedControl import LedControl
@@ -40,19 +40,20 @@ class TtsPlayer(object):
     '''
 
     def __init__(self):
-        self.ttsLib = CDLL('./libs/libTtsPulseAudio.so')
-        #self.ttsLib = CDLL('./libs/libTts.so')
+        #self.ttsLib = CDLL('./libs/libTtsPulseAudio.so')
+        self.ttsLib = CDLL('./libs/libTts.so')
         
     def init(self):
         path = os.path.abspath(__file__)
         dir_path = os.path.dirname(path)
         res = dir_path + '/res/tts_res.mp3'
         c_res = c_char_p(res.encode('utf-8'))
-        self.tts = self.ttsLib.ttsCreate(c_res)    
+        self.tts = self.ttsLib.ttsCreate(c_res) 
         self.needStop = False  
         self.onPlayEnd = None
         self.playThread = None
         if self.tts != None:
+            self.ttsLib.ttsSetSpeed(self.tts, c_float(1.1))
             return True
         else:
             return False
