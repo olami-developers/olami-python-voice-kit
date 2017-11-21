@@ -22,6 +22,7 @@ from VoiceCmd import VoiceCmd
 from threading import Thread
 from Config import Config
 import time
+import urllib.request
 class SpeechProcess(Thread):
     '''
     classdocs
@@ -42,6 +43,13 @@ class SpeechProcess(Thread):
         self.nlp.setAuthorization(Config.APP_KEY, Config.APP_SECRET)     
         self.start()      
         return True
+
+    def check_connectivity(self,reference):
+        try:
+            urllib.request.urlopen(reference, timeout=1)
+            return True
+        except urllib.request.URLError:
+            return False
     
     def destroy(self):
         self.needStop = True

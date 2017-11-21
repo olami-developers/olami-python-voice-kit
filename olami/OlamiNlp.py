@@ -35,8 +35,8 @@ class OlamiNlp(object):
         Constructor
         '''
  
-    API_NAME_ASR = "asr";
-    
+    API_NAME_ASR = "asr";    
+
     apiBaseUrl = ''
     appKey = ''
     appSecret = ''
@@ -185,7 +185,23 @@ class OlamiNlp(object):
 
                 break 
         return ret
-
+    
+    '''Get the NLU recognition result for your input text.
+     
+      :param inputText the text you want to recognize.'''
+    def getNliResult(self, inputText):
+        
+        '''Assemble all the HTTP parameters you want to send'''
+        rq = '{\"data_type\":\"stt\",\"data\":{\"input_type\":1,\"text\":\"'+inputText+'\"}}'
+        postData = str(self.getBasicQueryString("nli", ""))
+        postData +='&rq='+rq
+        
+        '''Request NLU service by HTTP POST'''
+        req = urllib.request.Request(self.apiBaseUrl,postData.encode("utf-8"))
+        with urllib.request.urlopen(req) as f:
+            getResponse = f.read().decode('utf-8')
+        
+        return str(getResponse)
  
     def getRecognitionResult(self, apiName, seqValue):
         query = self.getBasicQueryString(apiName, seqValue) + "&stop=1"

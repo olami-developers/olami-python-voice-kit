@@ -22,7 +22,7 @@ from SpeechProcess import SpeechProcess
 from NliObject import NliObject
 from LedControl import LedControl
 from DialogueObject import DialogueObject
-
+import time
 class ControlCenter(Thread):
     '''
     classdocs
@@ -139,9 +139,13 @@ class ControlCenter(Thread):
         self.speechProcess = SpeechProcess()
         ret = self.ttsPlayer.init()
         if ret:
-            self.ttsPlayer.speak("你好，我是歐拉蜜", None)
             ret = self.speechProcess.init(self.handler)
            
+            while not self.speechProcess.check_connectivity('http://www.google.com.tw'):
+                self.ttsPlayer.speak("網路連線中", None)
+                time.sleep(3)
+            nliResult = self.speechProcess.nlp.getNliResult("你好")   
+            self.ttsPlayer.speak("你好，我是歐拉蜜", None)
         return ret
         
     def run(self):
