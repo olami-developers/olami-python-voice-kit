@@ -1,6 +1,18 @@
 # !/bin/bash
 PATH=/sbin:/bin:/usr/bin
 
+PS_OUTPUT=$(ps -ax | grep olamiMain.py | grep python3 | awk '{print $1}')
+if [ ! -z $PS_OUTPUT ]; then
+    echo "kill background olamiMain.py"
+    kill -9 $PS_OUTPUT
+fi
+PS_OUTPUT=$(ps -ax | grep pulseaudio | grep bin | awk '{print $1}')
+if [ ! -z $PS_OUTPUT ]; then
+    echo "kill background pulseaudio"
+    kill -9 $PS_OUTPUT
+fi
+sleep 1
+
 echo "start pulse\n"
 who
 sleep 5

@@ -17,20 +17,41 @@ do_start() {
       /sbin/run_olami
 }
 
+do_stop() {
+      PS_OUTPUT=$(ps -ax | grep olamiMain.py | grep python3 | awk '{print $1}')
+      if [ ! -z $PS_OUTPUT ]; then 
+           echo "kill background olamiMain.py"
+           kill -9 $PS_OUTPUT
+      fi
+      PS_OUTPUT=$(ps -ax | grep pulseaudio | grep bin | awk '{print $1}')
+      if [ ! -z $PS_OUTPUT ]; then
+           echo "kill background pulseaudio"
+           kill -9 $PS_OUTPUT
+      fi
+}
+
 
 case "$1" in
   start|"")
-	do_start
-	;;
+    do_start
+    exit 3
+    ;;
   restart|reload|force-reload)
-	echo "Error: argument '$1' not supported" >&2
-	exit 3
-	;;
-  stop|status)
-	# No-op
-	;;
+    do_stop
+    sleep 3
+    do_start
+    exit 3
+    ;;
+  stop)
+    do_stop
+    exit 3
+    ;;
+  status)
+    #no-op
+    exit 3
+    ;;
   *)
-	echo "Usage: sudo service olami [retart]" >&2
-	exit 3
-	;;
+    echo "Usage: sudo service olami [retart]" >&2
+    exit 3
+    ;;
 esac
