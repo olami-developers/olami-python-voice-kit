@@ -23,6 +23,8 @@ class LedControl(object):
     '''
     classdocs
     '''
+    
+    enableLEDControl = 1
 
     def __init__(self):
         '''
@@ -30,6 +32,8 @@ class LedControl(object):
         '''
 
     def LightAll(self,color):
+        if self.enableLEDControl == 0:
+            return
         uartApi = UartAPISample()
         time.sleep(0.001)
         uartApi.openUart()
