@@ -14,6 +14,6 @@ OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 
 * * *
 
-### OLAMI OSL (NLP model design) examples
+### OLAMI NLP modeling (OSL design) examples
 
 See Repository : [olami-osl-examples](https://github.com/olami-developers/olami-osl-examples)
