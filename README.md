@@ -11,3 +11,9 @@ OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 * * *
 - [繁體中文線上說明 - 安装指南 (Raspberry Pi + Raspbian)](https://tw.olami.ai/school/article/62)
 - [繁體中文線上說明 - 程式碼解說](https://tw.olami.ai/school/article/64)
+
+* * *
+
+### OLAMI OSL (NLP model design) examples
+
+See Repository : [olami-osl-examples](https://github.com/olami-developers/olami-osl-examples)
