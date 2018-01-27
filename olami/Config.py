@@ -21,6 +21,12 @@ class Config(object):
     classdocs
     '''
     
+    '''
+    - Use LOCALIZE_OPTION_SIMPLIFIED_CHINESE for China, for example:
+    NLI_SERVER = "https://cn.olami.ai/cloudservice/api"
+    - Use LOCALIZE_OPTION_TRADITIONAL_CHINESE for Taiwan, for example: 
+    NLI_SERVER = "https://tw.olami.ai/cloudservice/api"
+    '''
     NLI_SERVER = "https://tw.olami.ai/cloudservice/api"
     APP_KEY = "*******your app key*******"
     APP_SECRET = "*******your app secret*******"
