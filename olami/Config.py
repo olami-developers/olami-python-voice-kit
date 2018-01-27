@@ -22,9 +22,9 @@ class Config(object):
     '''
     
     '''
-    - Use LOCALIZE_OPTION_SIMPLIFIED_CHINESE for China, for example:
+    - Use the server "cn.olami.ai" for China, for example:
     NLI_SERVER = "https://cn.olami.ai/cloudservice/api"
-    - Use LOCALIZE_OPTION_TRADITIONAL_CHINESE for Taiwan, for example: 
+    - Use the server "tw.olami.ai" for Taiwan, for example: 
     NLI_SERVER = "https://tw.olami.ai/cloudservice/api"
     '''
     NLI_SERVER = "https://tw.olami.ai/cloudservice/api"
