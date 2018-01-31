@@ -72,7 +72,7 @@ class VoiceCmd(object):
                 if hyp:
                     hyp = hyp.decode("utf-8")
                     print(hyp)
-                    if "歐拉密" == hyp:
+                    if "歐拉蜜" == hyp:
                         if self.asrLib.voiceCmdIsSpeaking() != 0:
                             ret = VoiceCmd.STATE_DETECTED_SENTENCE                            
                         else:
