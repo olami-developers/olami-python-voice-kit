@@ -40,9 +40,16 @@ class SpeechProcess(Thread):
         self.setDaemon(True)
         self.nlp = OlamiNlp()
         self.nlp.setLocalization(Config.NLI_SERVER)
+        self.check_key_and_secret()
         self.nlp.setAuthorization(Config.APP_KEY, Config.APP_SECRET)     
         self.start()      
         return True
+
+    def check_key_and_secret(self):
+        if Config.APP_KEY.startswith('****') or Config.APP_SECRET.startswith('****'):
+            msg = self.handler.obtainMessage1(MsgConst.MSG_NORMAL_TTS_PLAY)
+            msg.obj = "您尚未設定開發者金鑰"
+            self.handler.sendMessage(msg)
 
     def check_connectivity(self,reference):
         try:
