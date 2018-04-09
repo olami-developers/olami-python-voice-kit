@@ -34,7 +34,7 @@ class NliObject(object):
         '''
         Constructor
         '''       
-        if params != None:
+        if params != None and len(params) > 0:
             self.obj = params[0]
         else:
             self.boj = None
