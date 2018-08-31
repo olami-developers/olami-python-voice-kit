@@ -153,6 +153,20 @@ class OlamiNlp(object):
             
             
             if foundVoice and (speechStatus == 0 or speechLen > 32000 * 8):
+                #final post: it need to set stop=1
+                postData = str(self.getBasicQueryString(OlamiNlp.API_NAME_ASR, "seg,nli"))
+                postData += "&compress=" + "1"
+                postData += "&stop=" + "1"
+
+                url = str(self.apiBaseUrl) + "?" + str(postData)
+                headers = { 'Connection'    : "Keep-Alive", \
+                            'Content-Type'  : "application/octet-stream", \
+                            'Cookie': self.cookies }
+                req = urllib.request.Request(url,speexData, headers)
+                f = urllib.request.urlopen(req)
+                response = f.read().decode()
+                #print(response + "\n")
+
                 startTime = time.time()
                 while True:
                     response = self.getRecognitionResult(OlamiNlp.API_NAME_ASR, "nli,seg")
