@@ -51,7 +51,9 @@ class NliObject(object):
             self.dataObjs = self.obj.get("data_obj")
             self.semanticObjs = self.obj.get("semantic")
             
-            if self.semanticObjs != None:
+            if self.desc_obj != None:
+                ret = DialogueObject(self.type, self.desc_obj, self.dataObjs)
+            elif self.semanticObjs != None:
                 classType = NliObject.semanticMap.get(self.type, None)
                 if classType != None:
                     ret = classType(self.type, self.desc_obj, self.semanticObjs)
